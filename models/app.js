@@ -1,16 +1,7 @@
-// const todoTaskSchema ={
-//     name : String,
-//     description : String,
-//     creator : String,
-//     duration : Number,
-//     created_at: { type: Date, default: Date.now },
-//     };
-  
-//   const task = mongoose.model("task", todoTaskSchema);
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const todoTaskSchema = new Schema(
+const todoTaskSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -28,6 +19,11 @@ const todoTaskSchema = new Schema(
       type: Number,
       required: true,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      required: true
+    }
   });
 
 module.exports = mongoose.model('Task', todoTaskSchema);

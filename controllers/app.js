@@ -1,17 +1,29 @@
+const express = require('express')
+const mongoose = require('mongoose')
+
 const Task = require('../models/app');
 
-exports.getTask = (req , res,next)=> {
-    task.find(function(err, listTasks){
-      if (!err) {
-        console.log(listTasks);
-        res.send({listTasks});
-      } else {
-        res.send(err);
-      }
-    });
-  }
-  
-exports.postTask = (req , res, next) => {
+
+// exports.getTask = (req , res,next)=> {
+//     task.find(function(err, listTasks){
+//       if (!err) {
+//         console.log(listTasks);
+//         res.send({listTasks});
+//       } else {
+//         res.send(err);
+//       }
+//     });
+//   }
+exports.getT=(async(req,res) => {
+    try{
+           const listTasks = await Task.find()
+           res.json(listTasks)
+    }catch(err){
+        res.send('Error ' + err)
+    }
+});
+
+exports.postT = (req , res, next) => {
   console.log(req.body.name);
     const addNewTask = new Task ({
       name : req.body.name,
@@ -35,3 +47,20 @@ exports.postTask = (req , res, next) => {
 
     });
   };
+
+// exports.postT=(async(req,res) => {
+//     const work = new Task({
+//         name: req.body.name,
+//         description: req.body.description,
+//         creator: req.body.creator,
+//         duration: req.body.duration,
+//         createdAt: req.body.createdAt
+//     })
+
+//     try{
+//         const done =  await work.save() 
+//         res.json(done)
+//     }catch(err){
+//         res.send('Error')
+//     }
+// });

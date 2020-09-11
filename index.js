@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 app.use(taskRoutes);
-
+app.use(express.json());
 mongoose.connect(
   'mongodb+srv://devuser:abcd1234@cluster0-5b1ty.mongodb.net/todotasks?retryWrites=true&w=majority',
   { 
